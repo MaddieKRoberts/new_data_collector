@@ -5,14 +5,15 @@ import os
 
 
 def downloadfiles(year, num):
-    
-    #make url
+    if fileexists(year, num):
+        break
+    #make url 
     urlnum = str(num).zfill(3)
     urlyear = f"https://clerk.house.gov/evs/{year}/roll"
     url = f"{urlyear}{urlnum}.xml"
 
     #make file name
-    filename = f"{urlyear}{urlnum}.xml"
+    filename = f"xmlfiles/{year}{urlnum}.xml"
     
     #trying to download the file
     try:
@@ -23,7 +24,7 @@ def downloadfiles(year, num):
         print(response)
         
         #creates and downloads file
-        with open(filename, 'w') as f:
+        with open(filename, 'wb') as f:
             for chunk in response.iter_content(chunk_size=8192):
                 f.write(chunk)
         print(f"File '{filename}' downloaded successfully.")
@@ -37,4 +38,12 @@ def downloadfiles(year, num):
         return
 
 
+
+def fileexists(year, num):
+    os.path.exists(f"xmlfiles/{year}{urlnum}.xml")
+
+
 downloadfiles(2003, 95)
+
+downloadfiles(2060, 1119)
+downloadfiles(1998, 205)
