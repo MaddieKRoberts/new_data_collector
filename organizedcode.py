@@ -4,7 +4,7 @@ import requests
 import os
 
 
-def downloadfiles(year, num)
+def downloadfiles(year, num):
     
     #make url
     urlnum = str(num).zfill(3)
