@@ -23,7 +23,7 @@ def downloadfiles(year, num):
         print(response)
         
         #creates and downloads file
-        with open(filename, 'wb') as f:
+        with open(filename, 'w') as f:
             for chunk in response.iter_content(chunk_size=8192):
                 f.write(chunk)
         print(f"File '{filename}' downloaded successfully.")
